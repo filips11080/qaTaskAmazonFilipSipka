@@ -8,10 +8,12 @@ describe('Search page tests', () => {
         cy.launchStore(url)
     })
 
-    it('Calculate price', () => {
+    it('Validate search functionality', () => {
         cy.fixture('testData').then(data => {
-            cy.searchProduct(data.productName)
-            cy.averagePrice(2)
+        cy.searchProduct(data.productName)
+        cy.validateSearchResultPage(data.productName)
+        cy.searchProduct(data.searchTermLong)
+        cy.validateSearchResultPage(data.searchTermLong)
         })
     })
 })

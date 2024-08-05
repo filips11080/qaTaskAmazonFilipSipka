@@ -22,26 +22,6 @@ Cypress.Commands.add('assertUrl', value => {
     .should('include', value)
 })
 
-/*
-- Update specific value/s for desired json
-*/
-Cypress.Commands.add('updateJsonValues', (fixtureName, updates) => {
-  cy.fixture(fixtureName).then(content => {
-    Object.assign(content, updates)
-    cy.writeFile(`cypress/fixtures/${fixtureName}.json`, content)
-  })
-})
-
-/*
-- Clear all values of desired json
-*/
-Cypress.Commands.add('clearJsonValues', fixtureName => {
-  cy.fixture(fixtureName).then(data => {
-    Object.keys(data).forEach(key => (data[key] = null))
-    cy.writeFile(`cypress/fixtures/${fixtureName}.json`, data)
-  })
-})
-
 Cypress.Commands.add('launchStore', (url) => {
     cy.visit(url)
     cy.assertUrl(url)
